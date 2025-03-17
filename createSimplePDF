@@ -1,0 +1,27 @@
+// Fallback function to create a very simple PDF without jsPDF
+function createSimplePDF(text, sendResponse) {
+  try {
+    console.log("Using simple PDF fallback method");
+    
+    // Giới hạn độ dài văn bản
+    let processedText = text;
+    const MAX_LENGTH = 2000; // Giảm giới hạn xuống 2000 ký tự để tránh lỗi quota
+    if (text.length > MAX_LENGTH) {
+      processedText = text.substring(0, MAX_LENGTH) + "\n\n[Nội dung đã bị cắt ngắn...]";
+    }
+    
+    // Tạo HTML đơn giản với font mặc định của Chrome
+    const htmlContent = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>PDF</title><style>body{font-family:monospace;margin:20mm;font-size:9pt}pre{white-space:pre-wrap;word-wrap:break-word;font-family:monospace}</style></head><body><pre>${processedText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></body></html>`;
+    
+    // Chuyển đổi HTML thành data URI
+    const dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
+    
+    // Gửi data URI để tải xuống
+    sendResponse({ success: true, pdfData: dataUri, isHtml: true });
+    
+  } catch (error) {
+    console.error("Error creating simple PDF:", error);
+    // Nếu vẫn lỗi, trả về lỗi để hiển thị cho người dùng
+    sendResponse({ success: false, error: "Không thể tạo PDF do giới hạn dung lượng. Vui lòng giảm độ dài văn bản." });
+  }
+} 

@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Clip To File",
+  "version": "1.0",
+  "description": "Save selected or clipboard text as PDF, TXT, or Markdown files",
+  "permissions": [
+    "contextMenus",
+    "downloads",
+    "activeTab",
+    "clipboardRead",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; font-src 'self';"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["jspdf.umd.min.js", "jspdf-checker.js", "jspdf-loader.js", "jspdf-creator.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  }
+} 
