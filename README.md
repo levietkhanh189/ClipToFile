@@ -1,7 +1,8 @@
 # Clip To File
 
 A Chrome extension that allows you to save selected text or clipboard content as PDF, TXT, or Markdown files.
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zI1mzCWNDas?si=JynhpIFI6107MEVe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/zI1mzCWNDas/0.jpg)](http://www.youtube.com/watch?v=zI1mzCWNDas "ClipToFile Extension")
 
 ## Features
 
